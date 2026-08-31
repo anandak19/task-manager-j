@@ -1,0 +1,101 @@
+@use 'index' as *;
+
+.task-card {
+  display: flex;
+  flex-direction: column;
+
+  padding: 20px;
+
+  background-color: $white;
+  border: 1px solid $border-color;
+  border-radius: 8px;
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__status {
+    width: fit-content;
+    padding: 4px 10px;
+
+    color: $primary-color;
+    background-color: $secondary-color;
+
+    border-radius: 999px;
+
+    font-size: $font-size-xs;
+    font-weight: $font-weight-semibold;
+  }
+
+  &__title {
+    margin: 0;
+
+    color: $black;
+    font-size: $font-size-lg;
+    font-weight: $font-weight-semibold;
+    line-height: $line-height-sm;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    margin-top: 16px;
+  }
+
+  &__description {
+    margin: 0;
+
+    color: $gray-color;
+    font-size: $font-size-md;
+    line-height: $line-height-md;
+  }
+
+  &__deadline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  &__deadline-label {
+    color: $gray-color;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+  }
+
+  &__deadline-date {
+    color: $black;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: flex-end;
+
+    margin-top: 20px;
+    padding-top: 16px;
+
+    border-top: 1px solid $border-color;
+  }
+
+  &__link {
+    color: $primary-color;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    text-decoration: none;
+
+    &:hover {
+      color: $primary-color-hover;
+      text-decoration: underline;
+    }
+
+    &:active {
+      color: $primary-color-active;
+    }
+  }
+}

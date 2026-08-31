@@ -1,0 +1,26 @@
+<header class="header">
+  <div class="header__container">
+    <a class="header__brand" routerLink="/">
+      Task Manager
+    </a>
+
+    <nav class="header__nav" aria-label="Main navigation">
+      <a
+        class="header__link"
+        routerLink="/tasks"
+        routerLinkActive="header__link--active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        Tasks
+      </a>
+
+      <!-- Future navigation links -->
+    </nav>
+
+    <div class="header__spacer"></div>
+  </div>
+</header>
+
+<main class="layout-content">
+  <router-outlet></router-outlet>
+</main>
