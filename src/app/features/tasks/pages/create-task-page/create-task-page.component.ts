@@ -15,16 +15,20 @@ export class CreateTaskPageComponent {
   isTaskCreating = signal(false);
 
   private _taskService = inject(TaskService);
-  private _location = inject(Location)
+  private _location = inject(Location);
 
   // create task
-  handleCreateTask(taskData: ICreateTask) {
+  handleCreateTask(taskData: ITaskFormData) {
     this.isTaskCreating.set(true);
-    this._taskService.createTask(taskData);
+    const newTask: ICreateTask = {
+      ...taskData,
+      createdAt: new Date().toLocaleString(),
+    };
+    this._taskService.createTask(newTask);
     setTimeout(() => this.isTaskCreating.set(false), 5000);
   }
 
-  navigateBack(){
-    this._location.back()
+  navigateBack() {
+    this._location.back();
   }
 }

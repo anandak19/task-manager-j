@@ -1,6 +1,7 @@
 import { DatePipe, Location } from '@angular/common';
 import { Component, inject, Input, input, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { StatusLabelPipe } from '@core/pipes/status-label-pipe';
 import { ITask } from '@features/tasks/models/task.model';
 import { TaskService } from '@features/tasks/services/task.service';
@@ -18,9 +19,15 @@ export class TaskDetailsPageComponent implements OnInit {
 
   private _taskService = inject(TaskService);
   private _location = inject(Location);
+  private _router = inject(Router);
+  private _activatedRoute = inject(ActivatedRoute);
 
   navigateBack() {
     this._location.back();
+  }
+
+  navigateEditTask() {
+    this._router.navigate(['edit'], { relativeTo: this._activatedRoute });
   }
 
   ngOnInit(): void {

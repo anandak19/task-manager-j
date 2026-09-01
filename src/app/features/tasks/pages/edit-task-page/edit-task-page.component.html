@@ -1,1 +1,14 @@
-<p>edit-task-page works!</p>
+<div class="edit-task-page">
+  <header class="edit-task-page__header">
+    <h2 class="edit-task-page__title">Edit Task</h2>
+    <button class="btn btn-primary btn-sm" (click)="navigateBack()">Back</button>
+  </header>
+  <section class="create-task__form">
+    <app-task-form
+      (submitTaskForm)="handleEditTask($event)"
+      [isLoading]="isLoading()"
+      [currentTask]="taskData()"
+      formLabel="Update"
+    ></app-task-form>
+  </section>
+</div>

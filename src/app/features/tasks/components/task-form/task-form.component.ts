@@ -4,14 +4,22 @@ import {
   inject,
   Input,
   input,
+  OnChanges,
   OnInit,
   Output,
   signal,
+  SimpleChanges,
 } from '@angular/core';
-import { FormBuilder, FormsModule, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormsModule,
+  NonNullableFormBuilder,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { QuillModule, QuillModules } from 'ngx-quill';
 import { Delta } from 'quill/core';
-import { ICreateTask, ITaskFormData, TaskStatus } from '@features/tasks/models/task.model';
+import { ICreateTask, ITask, ITaskFormData, TaskStatus } from '@features/tasks/models/task.model';
 import { futureOrTodayValidator, noWhitespaceValidator } from '@shared/validators/form.validators';
 import { TASK_STATUS, TASK_STATUS_LABELS } from '@shared/constants/task-status.constants';
 
@@ -21,12 +29,13 @@ import { TASK_STATUS, TASK_STATUS_LABELS } from '@shared/constants/task-status.c
   templateUrl: './task-form.component.html',
   styleUrl: './task-form.component.scss',
 })
-export class TaskFormComponent implements OnInit {
+export class TaskFormComponent implements OnChanges {
   @Input() taskId: string | null = null;
+  @Input() currentTask: ITask | null = null;
 
   @Input() isLoading = false;
   @Input() formLabel: string = 'Save';
-  @Output() submitTaskForm = new EventEmitter<ICreateTask>();
+  @Output() submitTaskForm = new EventEmitter<ITaskFormData>();
 
   isSubmitted = signal(false);
 
@@ -50,7 +59,7 @@ export class TaskFormComponent implements OnInit {
       [
         Validators.required,
         Validators.minLength(3),
-        Validators.maxLength(15),
+        Validators.maxLength(50),
         noWhitespaceValidator,
       ],
     ],
@@ -65,21 +74,27 @@ export class TaskFormComponent implements OnInit {
     if (this.taskForm.valid) {
       const formData = this.taskForm.getRawValue();
 
-      const task: ICreateTask = {
-        title : formData.title,
-        description: JSON.parse(formData.description),
+      const task: ITaskFormData = {
+        title: formData.title,
+        description: JSON.parse(formData.description as string),
         deadline: formData.deadline,
         status: formData.status,
-        createdAt: new Date().toLocaleString(),
-      }
-      
-      console.log('Form Data:', formData);
+      };
 
       this.submitTaskForm.emit(task);
     } else {
       this.taskForm.markAllAsTouched();
       this.taskForm.markAsDirty();
     }
+  }
+
+  patchForm(taskData: ITask) {
+    this.taskForm.patchValue({
+      title: taskData.title,
+      description: JSON.stringify(taskData.description),
+      deadline: taskData.deadline,
+      status: taskData.status,
+    });
   }
 
   // error getter
@@ -103,7 +118,7 @@ export class TaskFormComponent implements OnInit {
     }
 
     if (title.hasError('maxlength')) {
-      return 'Title cannot exceed 15 characters';
+      return 'Title cannot exceed 50 characters';
     }
 
     return '';
@@ -159,10 +174,9 @@ export class TaskFormComponent implements OnInit {
     return '';
   }
 
-  ngOnInit(): void {
-    if (this.taskId) {
-      // fetch task data
-      // patch the from with fetched data
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.currentTask) {
+      this.patchForm(this.currentTask);
     }
   }
 }

@@ -1,5 +1,5 @@
 import { inject, Injectable, signal } from '@angular/core';
-import { ICreateTask, ITask } from '../models/task.model';
+import { ICreateTask, ITask, ITaskFormData } from '../models/task.model';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -23,11 +23,32 @@ export class TaskService {
     return this._http.get<ITask[]>('tasks.json');
   }
 
-  findTaskById(taskId: string) : ITask | null{
-    return this.tasks().find((task) => task.id === taskId) ?? null
+  findTaskById(taskId: string): ITask | null {
+    return this.tasks().find((task) => task.id === taskId) ?? null;
+  }
+
+  updateTaskById(taskData: ITaskFormData, taskId: string) {
+    const updatedTasks = this.tasks().map((curr) => {
+      if (curr.id === taskId) {
+        return {
+          ...curr,
+          ...taskData,
+        };
+      }
+
+      return curr;
+    });
+
+    this.setTasks(updatedTasks);
+  }
+
+  deleteTaskById(taskId: string) {
+    const updatedTasks = this.tasks().filter((curr) => curr.id !== taskId);
+    this.setTasks(updatedTasks);
   }
 
   setTasks(tasks: ITask[]): void {
     this._tasks.set(tasks);
+    console.log('Updated Tasks', this.tasks());
   }
 }
