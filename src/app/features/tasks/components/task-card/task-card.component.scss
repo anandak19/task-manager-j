@@ -52,6 +52,13 @@
     color: $gray-color;
     font-size: $font-size-md;
     line-height: $line-height-md;
+
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+
+    overflow: hidden;
   }
 
   &__deadline {
@@ -88,6 +95,7 @@
     font-size: $font-size-sm;
     font-weight: $font-weight-semibold;
     text-decoration: none;
+    cursor: pointer;
 
     &:hover {
       color: $primary-color-hover;

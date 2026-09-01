@@ -13,6 +13,7 @@ import { QuillModule, QuillModules } from 'ngx-quill';
 import { Delta } from 'quill/core';
 import { ICreateTask, ITaskFormData, TaskStatus } from '@features/tasks/models/task.model';
 import { futureOrTodayValidator, noWhitespaceValidator } from '@shared/validators/form.validators';
+import { TASK_STATUS, TASK_STATUS_LABELS } from '@shared/constants/task-status.constants';
 
 @Component({
   selector: 'app-task-form',
@@ -24,7 +25,7 @@ export class TaskFormComponent implements OnInit {
   @Input() taskId: string | null = null;
 
   @Input() isLoading = false;
-  @Input() formLabel: string = "Save";
+  @Input() formLabel: string = 'Save';
   @Output() submitTaskForm = new EventEmitter<ITaskFormData>();
 
   isSubmitted = signal(false);
@@ -38,12 +39,8 @@ export class TaskFormComponent implements OnInit {
     ],
   };
 
-  readonly taskStatusLabels: Record<TaskStatus, string> = {
-    PENDING: 'Pending',
-    IN_PROGRESS: 'In Progress',
-    COMPLETED: 'Completed',
-  };
-  readonly taskStatuses: TaskStatus[] = ['PENDING', 'IN_PROGRESS', 'COMPLETED'];
+  readonly taskStatusLabels = TASK_STATUS_LABELS;
+  readonly taskStatuses = TASK_STATUS;
 
   private _fb = inject(FormBuilder);
 
@@ -71,8 +68,8 @@ export class TaskFormComponent implements OnInit {
 
       this.submitTaskForm.emit(formData);
     } else {
-      this.taskForm.markAllAsTouched()
-      this.taskForm.markAsDirty()
+      this.taskForm.markAllAsTouched();
+      this.taskForm.markAsDirty();
     }
   }
 

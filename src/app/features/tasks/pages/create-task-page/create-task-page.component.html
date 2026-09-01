@@ -1,6 +1,7 @@
 <div class="create-task">
   <header class="create-task__header">
     <h2 class="create-task__title">Create Task</h2>
+    <button class="btn btn-primary" (click)="navigateBack()">Back</button>
   </header>
   <section class="create-task__form">
     <app-task-form (submitTaskForm)="handleCreateTask($event)" [isLoading]="isTaskCreating()"></app-task-form>

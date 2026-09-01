@@ -2,28 +2,18 @@
   <header class="tasks-list-page__header">
     <h2 class="tasks-list-page__title">Tasks</h2>
 
-    <button
-      class="tasks-list-page__create-button"
-      type="button"
-      (click)="navigateCreateTask()"
-    >
+    <button class="tasks-list-page__create-button" type="button" (click)="navigateCreateTask()">
       Create Task
     </button>
   </header>
 
-  <section
-    class="tasks-list-page__listing"
-    aria-labelledby="tasks-list-heading"
-  >
-
+  <section class="tasks-list-page__listing" aria-labelledby="tasks-list-heading">
     <ul class="tasks-list-page__list">
-      <li class="tasks-list-page__item">
-        <app-task-card></app-task-card>
-      </li>
-
-      <li class="tasks-list-page__item">
-        <app-task-card></app-task-card>
-      </li>
+      @for (task of tasks(); track $index) {
+        <li class="tasks-list-page__item">
+          <app-task-card [task]="task"></app-task-card>
+        </li>
+      }
     </ul>
   </section>
 </main>

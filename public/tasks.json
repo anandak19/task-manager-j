@@ -1,0 +1,50 @@
+[
+  {
+    "id": "task-001",
+    "title": "Implement user authentication",
+    "description": "<p>Implement authentication for the application using <strong>JWT</strong>.</p><p>The authentication flow should include:</p><ul><li>User registration</li><li>User login</li><li>Access token generation</li><li>Protected routes</li></ul>",
+    "status": "IN_PROGRESS",
+    "deadline": "2026-09-05",
+    "createdAt": "2026-08-28T09:30:00.000Z"
+  },
+  {
+    "id": "task-002",
+    "title": "Create task dashboard",
+    "description": "<p>Build the main <strong>task dashboard</strong> for managing application tasks.</p><p>The dashboard should display:</p><ol><li>Total number of tasks</li><li>Pending tasks</li><li>Tasks currently in progress</li><li>Completed tasks</li></ol>",
+    "status": "PENDING",
+    "deadline": "2026-09-08",
+    "createdAt": "2026-08-29T11:15:00.000Z"
+  },
+  {
+    "id": "task-003",
+    "title": "Add task comments",
+    "description": "<p>Implement a <strong>comments section</strong> for each task.</p><p>Users should be able to:</p><ul><li>Add a new comment</li><li>View existing comments</li><li>Reply to comments</li><li>Edit their comments</li></ul>",
+    "status": "IN_PROGRESS",
+    "deadline": "2026-09-10",
+    "createdAt": "2026-08-30T08:45:00.000Z"
+  },
+  {
+    "id": "task-004",
+    "title": "Design application layout",
+    "description": "<h3>Application Layout</h3><p>Create a responsive layout containing the following sections:</p><ul><li>Header</li><li>Sidebar</li><li>Main content area</li></ul><p>The layout should work properly on both <em>desktop</em> and <em>mobile</em> screens.</p>",
+    "status": "COMPLETED",
+    "deadline": "2026-08-30",
+    "createdAt": "2026-08-25T14:20:00.000Z"
+  },
+  {
+    "id": "task-005",
+    "title": "Write unit tests",
+    "description": "<p>Add unit tests for the main task management functionality.</p><p>Focus on testing:</p><ol><li>Task creation</li><li>Task editing</li><li>Task deletion</li><li>Task status updates</li></ol>",
+    "status": "PENDING",
+    "deadline": "2026-09-15",
+    "createdAt": "2026-08-31T10:00:00.000Z"
+  },
+  {
+    "id": "task-006",
+    "title": "Improve form validation",
+    "description": "<p>Improve validation across the task form.</p><p>Required validations include:</p><ul><li><strong>Title:</strong> 3–15 characters</li><li><strong>Description:</strong> Maximum 100 characters</li><li><strong>Deadline:</strong> Cannot be in the past</li><li><strong>Status:</strong> Must be a valid task status</li></ul>",
+    "status": "COMPLETED",
+    "deadline": "2026-08-29",
+    "createdAt": "2026-08-26T12:10:00.000Z"
+  }
+]

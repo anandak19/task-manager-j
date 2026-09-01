@@ -1,4 +1,6 @@
+import { Location } from '@angular/common';
 import { Component, DestroyRef, inject, signal } from '@angular/core';
+import { Router } from '@angular/router';
 import { TaskFormComponent } from '@features/tasks/components/task-form/task-form.component';
 import { ICreateTask, ITaskFormData } from '@features/tasks/models/task.model';
 import { TaskService } from '@features/tasks/services/task.service';
@@ -13,7 +15,7 @@ export class CreateTaskPageComponent {
   isTaskCreating = signal(false);
 
   private _taskService = inject(TaskService);
-  private _destroyRef = inject(DestroyRef);
+  private _location = inject(Location)
 
   // create task
   handleCreateTask(taskData: ITaskFormData) {
@@ -26,5 +28,9 @@ export class CreateTaskPageComponent {
     this.isTaskCreating.set(true);
     this._taskService.createTask(newTask);
     setTimeout(() => this.isTaskCreating.set(false), 5000);
+  }
+
+  navigateBack(){
+    this._location.back()
   }
 }
