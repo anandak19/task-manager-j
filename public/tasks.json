@@ -2,7 +2,61 @@
   {
     "id": "task-001",
     "title": "Implement user authentication",
-    "description": "<p>Implement authentication for the application using <strong>JWT</strong>.</p><p>The authentication flow should include:</p><ul><li>User registration</li><li>User login</li><li>Access token generation</li><li>Protected routes</li></ul>",
+    "description": {
+      "ops": [
+        {
+          "insert": "Implement authentication for the application using "
+        },
+        {
+          "insert": "JWT",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ".\n"
+        },
+        {
+          "insert": "The authentication flow should include:\n"
+        },
+        {
+          "insert": "User registration"
+        },
+        {
+          "insert": "\n",
+          "attributes": {
+            "list": "bullet"
+          }
+        },
+        {
+          "insert": "User login"
+        },
+        {
+          "insert": "\n",
+          "attributes": {
+            "list": "bullet"
+          }
+        },
+        {
+          "insert": "Access token generation"
+        },
+        {
+          "insert": "\n",
+          "attributes": {
+            "list": "bullet"
+          }
+        },
+        {
+          "insert": "Protected routes"
+        },
+        {
+          "insert": "\n",
+          "attributes": {
+            "list": "bullet"
+          }
+        }
+      ]
+    },
     "status": "IN_PROGRESS",
     "deadline": "2026-09-05",
     "createdAt": "2026-08-28T09:30:00.000Z"
@@ -10,7 +64,61 @@
   {
     "id": "task-002",
     "title": "Create task dashboard",
-    "description": "<p>Build the main <strong>task dashboard</strong> for managing application tasks.</p><p>The dashboard should display:</p><ol><li>Total number of tasks</li><li>Pending tasks</li><li>Tasks currently in progress</li><li>Completed tasks</li></ol>",
+    "description": {
+      "ops": [
+        {
+          "insert": "Build the main "
+        },
+        {
+          "insert": "task dashboard",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " for managing application tasks.\n"
+        },
+        {
+          "insert": "The dashboard should display:\n"
+        },
+        {
+          "insert": "Total number of tasks"
+        },
+        {
+          "insert": "\n",
+          "attributes": {
+            "list": "ordered"
+          }
+        },
+        {
+          "insert": "Pending tasks"
+        },
+        {
+          "insert": "\n",
+          "attributes": {
+            "list": "ordered"
+          }
+        },
+        {
+          "insert": "Tasks currently in progress"
+        },
+        {
+          "insert": "\n",
+          "attributes": {
+            "list": "ordered"
+          }
+        },
+        {
+          "insert": "Completed tasks"
+        },
+        {
+          "insert": "\n",
+          "attributes": {
+            "list": "ordered"
+          }
+        }
+      ]
+    },
     "status": "PENDING",
     "deadline": "2026-09-08",
     "createdAt": "2026-08-29T11:15:00.000Z"
@@ -18,7 +126,61 @@
   {
     "id": "task-003",
     "title": "Add task comments",
-    "description": "<p>Implement a <strong>comments section</strong> for each task.</p><p>Users should be able to:</p><ul><li>Add a new comment</li><li>View existing comments</li><li>Reply to comments</li><li>Edit their comments</li></ul>",
+    "description": {
+      "ops": [
+        {
+          "insert": "Implement a "
+        },
+        {
+          "insert": "comments section",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " for each task.\n"
+        },
+        {
+          "insert": "Users should be able to:\n"
+        },
+        {
+          "insert": "Add a new comment"
+        },
+        {
+          "insert": "\n",
+          "attributes": {
+            "list": "bullet"
+          }
+        },
+        {
+          "insert": "View existing comments"
+        },
+        {
+          "insert": "\n",
+          "attributes": {
+            "list": "bullet"
+          }
+        },
+        {
+          "insert": "Reply to comments"
+        },
+        {
+          "insert": "\n",
+          "attributes": {
+            "list": "bullet"
+          }
+        },
+        {
+          "insert": "Edit their comments"
+        },
+        {
+          "insert": "\n",
+          "attributes": {
+            "list": "bullet"
+          }
+        }
+      ]
+    },
     "status": "IN_PROGRESS",
     "deadline": "2026-09-10",
     "createdAt": "2026-08-30T08:45:00.000Z"
@@ -26,7 +188,70 @@
   {
     "id": "task-004",
     "title": "Design application layout",
-    "description": "<h3>Application Layout</h3><p>Create a responsive layout containing the following sections:</p><ul><li>Header</li><li>Sidebar</li><li>Main content area</li></ul><p>The layout should work properly on both <em>desktop</em> and <em>mobile</em> screens.</p>",
+    "description": {
+      "ops": [
+        {
+          "insert": "Application Layout"
+        },
+        {
+          "insert": "\n",
+          "attributes": {
+            "header": 3
+          }
+        },
+        {
+          "insert": "Create a responsive layout containing the following sections:\n"
+        },
+        {
+          "insert": "Header"
+        },
+        {
+          "insert": "\n",
+          "attributes": {
+            "list": "bullet"
+          }
+        },
+        {
+          "insert": "Sidebar"
+        },
+        {
+          "insert": "\n",
+          "attributes": {
+            "list": "bullet"
+          }
+        },
+        {
+          "insert": "Main content area"
+        },
+        {
+          "insert": "\n",
+          "attributes": {
+            "list": "bullet"
+          }
+        },
+        {
+          "insert": "The layout should work properly on both "
+        },
+        {
+          "insert": "desktop",
+          "attributes": {
+            "italic": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "mobile",
+          "attributes": {
+            "italic": true
+          }
+        },
+        {
+          "insert": " screens.\n"
+        }
+      ]
+    },
     "status": "COMPLETED",
     "deadline": "2026-08-30",
     "createdAt": "2026-08-25T14:20:00.000Z"
@@ -34,7 +259,52 @@
   {
     "id": "task-005",
     "title": "Write unit tests",
-    "description": "<p>Add unit tests for the main task management functionality.</p><p>Focus on testing:</p><ol><li>Task creation</li><li>Task editing</li><li>Task deletion</li><li>Task status updates</li></ol>",
+    "description": {
+      "ops": [
+        {
+          "insert": "Add unit tests for the main task management functionality.\n"
+        },
+        {
+          "insert": "Focus on testing:\n"
+        },
+        {
+          "insert": "Task creation"
+        },
+        {
+          "insert": "\n",
+          "attributes": {
+            "list": "ordered"
+          }
+        },
+        {
+          "insert": "Task editing"
+        },
+        {
+          "insert": "\n",
+          "attributes": {
+            "list": "ordered"
+          }
+        },
+        {
+          "insert": "Task deletion"
+        },
+        {
+          "insert": "\n",
+          "attributes": {
+            "list": "ordered"
+          }
+        },
+        {
+          "insert": "Task status updates"
+        },
+        {
+          "insert": "\n",
+          "attributes": {
+            "list": "ordered"
+          }
+        }
+      ]
+    },
     "status": "PENDING",
     "deadline": "2026-09-15",
     "createdAt": "2026-08-31T10:00:00.000Z"
@@ -42,7 +312,76 @@
   {
     "id": "task-006",
     "title": "Improve form validation",
-    "description": "<p>Improve validation across the task form.</p><p>Required validations include:</p><ul><li><strong>Title:</strong> 3–15 characters</li><li><strong>Description:</strong> Maximum 100 characters</li><li><strong>Deadline:</strong> Cannot be in the past</li><li><strong>Status:</strong> Must be a valid task status</li></ul>",
+    "description": {
+      "ops": [
+        {
+          "insert": "Improve validation across the task form.\n"
+        },
+        {
+          "insert": "Required validations include:\n"
+        },
+        {
+          "insert": "Title: ",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": "3–15 characters"
+        },
+        {
+          "insert": "\n",
+          "attributes": {
+            "list": "bullet"
+          }
+        },
+        {
+          "insert": "Description: ",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": "Maximum 100 characters"
+        },
+        {
+          "insert": "\n",
+          "attributes": {
+            "list": "bullet"
+          }
+        },
+        {
+          "insert": "Deadline: ",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": "Cannot be in the past"
+        },
+        {
+          "insert": "\n",
+          "attributes": {
+            "list": "bullet"
+          }
+        },
+        {
+          "insert": "Status: ",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": "Must be a valid task status"
+        },
+        {
+          "insert": "\n",
+          "attributes": {
+            "list": "bullet"
+          }
+        }
+      ]
+    },
     "status": "COMPLETED",
     "deadline": "2026-08-29",
     "createdAt": "2026-08-26T12:10:00.000Z"

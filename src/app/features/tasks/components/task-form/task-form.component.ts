@@ -8,7 +8,7 @@ import {
   Output,
   signal,
 } from '@angular/core';
-import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormsModule, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { QuillModule, QuillModules } from 'ngx-quill';
 import { Delta } from 'quill/core';
 import { ICreateTask, ITaskFormData, TaskStatus } from '@features/tasks/models/task.model';
@@ -26,7 +26,7 @@ export class TaskFormComponent implements OnInit {
 
   @Input() isLoading = false;
   @Input() formLabel: string = 'Save';
-  @Output() submitTaskForm = new EventEmitter<ITaskFormData>();
+  @Output() submitTaskForm = new EventEmitter<ICreateTask>();
 
   isSubmitted = signal(false);
 
@@ -42,7 +42,7 @@ export class TaskFormComponent implements OnInit {
   readonly taskStatusLabels = TASK_STATUS_LABELS;
   readonly taskStatuses = TASK_STATUS;
 
-  private _fb = inject(FormBuilder);
+  private _fb = inject(NonNullableFormBuilder);
 
   taskForm = this._fb.group({
     title: [
@@ -54,19 +54,28 @@ export class TaskFormComponent implements OnInit {
         noWhitespaceValidator,
       ],
     ],
-    description: ['', [Validators.required, Validators.maxLength(100)]],
+    description: [''],
     deadline: ['', [Validators.required, futureOrTodayValidator]],
-    status: ['PENDING', [Validators.required]],
+    status: ['PENDING' as TaskStatus, [Validators.required]],
   });
 
   submitForm() {
     this.isSubmitted.set(true);
 
     if (this.taskForm.valid) {
-      const formData = this.taskForm.getRawValue() as ITaskFormData;
+      const formData = this.taskForm.getRawValue();
+
+      const task: ICreateTask = {
+        title : formData.title,
+        description: JSON.parse(formData.description),
+        deadline: formData.deadline,
+        status: formData.status,
+        createdAt: new Date().toLocaleString(),
+      }
+      
       console.log('Form Data:', formData);
 
-      this.submitTaskForm.emit(formData);
+      this.submitTaskForm.emit(task);
     } else {
       this.taskForm.markAllAsTouched();
       this.taskForm.markAsDirty();

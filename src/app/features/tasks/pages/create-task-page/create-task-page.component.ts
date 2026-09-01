@@ -18,15 +18,9 @@ export class CreateTaskPageComponent {
   private _location = inject(Location)
 
   // create task
-  handleCreateTask(taskData: ITaskFormData) {
-    // call create task service method here
-    const newTask: ICreateTask = {
-      ...taskData,
-      createdAt: new Date().toLocaleString(),
-    };
-
+  handleCreateTask(taskData: ICreateTask) {
     this.isTaskCreating.set(true);
-    this._taskService.createTask(newTask);
+    this._taskService.createTask(taskData);
     setTimeout(() => this.isTaskCreating.set(false), 5000);
   }
 

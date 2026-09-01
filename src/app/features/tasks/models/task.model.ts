@@ -3,7 +3,12 @@ export type TaskStatus = 'PENDING' | 'IN_PROGRESS' | 'COMPLETED';
 export interface ITask {
   id: string;
   title: string;
-  description: string;
+  description: {
+    ops: {
+      insert: string;
+      attributes?: Record<string, unknown>;
+    }[];
+  };
   status: TaskStatus;
   deadline: string;
   createdAt: string | null;
