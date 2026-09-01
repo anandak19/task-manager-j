@@ -8,18 +8,20 @@
 
     <div class="task-card__content">
       <p class="task-card__description">
-        {{task.description | quillText}}
+        {{ task.description | quillText }}
       </p>
 
       <div class="task-card__deadline">
         <span class="task-card__deadline-label">Deadline</span>
 
-        <time class="task-card__deadline-date" datetime="2026-09-05"> {{ task.deadline | date }} </time>
+        <time class="task-card__deadline-date" datetime="2026-09-05">
+          {{ task.deadline | date }}
+        </time>
       </div>
     </div>
 
     <footer class="task-card__footer">
-      <a class="task-card__link" routerLink="/tasks/1"> View Task </a>
+      <a class="task-card__link" [routerLink]="['/tasks', task.id]"> View Task </a>
     </footer>
   </article>
 }

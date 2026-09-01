@@ -1,0 +1,83 @@
+@use 'index' as *;
+
+.task-details-page {
+  //todo: move this block to shared stylesheet
+  max-width: 1200px;
+  margin: $spacing-4 auto;
+
+  .task-details {
+    padding: 40px $spacing-8;
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+
+    &__meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: $spacing-2;
+    }
+
+    // todo: move to shared sheet
+    &__status {
+      width: fit-content;
+      padding: 4px 10px;
+
+      color: $primary-color;
+      background-color: $secondary-color;
+
+      border-radius: 999px;
+
+      font-size: $font-size-xs;
+      font-weight: $font-weight-semibold;
+    }
+
+    &__title {
+      margin-bottom: $spacing-2;
+    }
+
+    &__deadline {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: $spacing-2;
+    }
+
+    &__deadline-label {
+      color: $gray-color;
+      font-size: $font-size-sm;
+      font-weight: $font-weight-medium;
+    }
+
+    &__deadline-date {
+      color: $black;
+      font-size: $font-size-sm;
+      font-weight: $font-weight-medium;
+    }
+
+    .task-description {
+      margin: $spacing-8 0;
+    }
+
+    &__actions {
+      display: flex;
+      gap: $spacing-2;
+    }
+  }
+
+  .comments {
+    margin-top: $spacing-4;
+    padding: 40px $spacing-8;
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+  }
+}
+
+:host ::ng-deep .task-description .ql-container.ql-snow {
+  border: none;
+}
+
+:host ::ng-deep .task-description .ql-editor {
+  padding: 0;
+}

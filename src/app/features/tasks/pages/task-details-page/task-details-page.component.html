@@ -1,1 +1,46 @@
-<p>task-details-page works!</p>
+@if (taskData()) {
+  <div class="task-details-page">
+    <div class="task-details">
+      <header class="task-details__header">
+        <div class="task-details__meta">
+          <span class="task-details__status">{{ taskData().status | statusLabel }}</span>
+          <div class="task-details__actions">
+            <button class="btn btn-secondary btn-sm">Edit</button>
+            <button class="btn btn-primary btn-sm" (click)="navigateBack()">Back</button>
+          </div>
+        </div>
+        <div class="task-details__title">
+          <h2>{{ taskData().title }}</h2>
+        </div>
+        <div class="task-details__deadline">
+          <span class="task-card__deadline-label">Deadline</span>
+
+          <time class="task-card__deadline-date" datetime="2026-09-05">
+            {{ taskData().deadline | date }}
+          </time>
+        </div>
+      </header>
+
+      <main class="task-description">
+        <quill-editor
+          [readOnly]="true"
+          [modules]="{ toolbar: false }"
+          [ngModel]="taskData().description"
+          format="object"
+        ></quill-editor>
+      </main>
+    </div>
+
+    <div class="comments">
+      <header class="comments__header">
+        <h2>Comments</h2>
+      </header>
+
+      <main>
+        <section>
+            
+        </section>
+      </main>
+    </div>
+  </div>
+}

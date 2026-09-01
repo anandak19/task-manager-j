@@ -14,31 +14,77 @@ body {
 
 
 .btn {
-  align-self: flex-start;
-  padding: 0.7rem 1.5rem;
-
-  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
   border-radius: 6px;
-
-  font-size: 0.95rem;
   font-weight: 600;
-
   cursor: pointer;
-
-  transition:
-    background-color 0.2s ease,
-    transform 0.1s ease;
+  transition: 0.2s ease;
 
   &:active {
     transform: translateY(1px);
   }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 }
 
+/* Sizes */
+.btn-sm {
+  padding: 0.45rem 0.8rem;
+  font-size: 0.8rem;
+}
+
+.btn-md {
+  padding: 0.65rem 1.1rem;
+  font-size: 0.9rem;
+}
+
+.btn-lg {
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+}
+
+/* Variants */
 .btn-primary {
   color: #fff;
-  background-color: #2563eb;
+  background: #2563eb;
+
+  &:hover { background: #1d4ed8; }
+}
+
+.btn-secondary {
+  color: #374151;
+  background: #e5e7eb;
+
+  &:hover { background: #d1d5db; }
+}
+
+.btn-outline {
+  color: #2563eb;
+  background: transparent;
+  border-color: #2563eb;
 
   &:hover {
-    background-color: #1d4ed8;
+    color: #fff;
+    background: #2563eb;
   }
+}
+
+.btn-danger {
+  color: #fff;
+  background: #dc2626;
+
+  &:hover { background: #b91c1c; }
+}
+
+.btn-ghost {
+  color: #374151;
+  background: transparent;
+
+  &:hover { background: #f3f4f6; }
 }

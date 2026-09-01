@@ -23,6 +23,10 @@ export class TaskService {
     return this._http.get<ITask[]>('tasks.json');
   }
 
+  findTaskById(taskId: string) : ITask | null{
+    return this.tasks().find((task) => task.id === taskId) ?? null
+  }
+
   setTasks(tasks: ITask[]): void {
     this._tasks.set(tasks);
   }
