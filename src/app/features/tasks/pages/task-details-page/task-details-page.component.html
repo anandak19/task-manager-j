@@ -5,6 +5,7 @@
         <div class="task-details__meta">
           <span class="task-details__status">{{ taskData().status | statusLabel }}</span>
           <div class="task-details__actions">
+            <button class="btn btn-danger btn-sm" (click)="deleteTask()">Delete</button>
             <button class="btn btn-secondary btn-sm" (click)="navigateEditTask()">Edit</button>
             <button class="btn btn-primary btn-sm" (click)="navigateBack()">Back</button>
           </div>

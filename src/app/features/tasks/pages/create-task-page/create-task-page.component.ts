@@ -1,6 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, DestroyRef, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
+import { NotificationService } from '@core/services/notification-service/notification.service';
 import { TaskFormComponent } from '@features/tasks/components/task-form/task-form.component';
 import { ICreateTask, ITaskFormData } from '@features/tasks/models/task.model';
 import { TaskService } from '@features/tasks/services/task.service';
@@ -16,6 +17,7 @@ export class CreateTaskPageComponent {
 
   private _taskService = inject(TaskService);
   private _location = inject(Location);
+  private _notification = inject( NotificationService);
 
   // create task
   handleCreateTask(taskData: ITaskFormData) {
@@ -25,7 +27,10 @@ export class CreateTaskPageComponent {
       createdAt: new Date().toLocaleString(),
     };
     this._taskService.createTask(newTask);
-    setTimeout(() => this.isTaskCreating.set(false), 5000);
+    this.isTaskCreating.set(false)
+
+    this._notification.success('New Task Added')
+    this.navigateBack()
   }
 
   navigateBack() {

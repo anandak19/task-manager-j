@@ -82,6 +82,7 @@ export class TaskFormComponent implements OnChanges {
       };
 
       this.submitTaskForm.emit(task);
+      // do rest after confirming task is saved
     } else {
       this.taskForm.markAllAsTouched();
       this.taskForm.markAsDirty();

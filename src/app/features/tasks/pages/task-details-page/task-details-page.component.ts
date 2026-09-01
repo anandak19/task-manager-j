@@ -3,6 +3,7 @@ import { Component, inject, Input, input, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StatusLabelPipe } from '@core/pipes/status-label-pipe';
+import { NotificationService } from '@core/services/notification-service/notification.service';
 import { ITask } from '@features/tasks/models/task.model';
 import { TaskService } from '@features/tasks/services/task.service';
 import { QuillModule } from 'ngx-quill';
@@ -21,6 +22,7 @@ export class TaskDetailsPageComponent implements OnInit {
   private _location = inject(Location);
   private _router = inject(Router);
   private _activatedRoute = inject(ActivatedRoute);
+  private _notificationService = inject(NotificationService);
 
   navigateBack() {
     this._location.back();
@@ -28,6 +30,24 @@ export class TaskDetailsPageComponent implements OnInit {
 
   navigateEditTask() {
     this._router.navigate(['edit'], { relativeTo: this._activatedRoute });
+  }
+
+  async deleteTask() {
+    const confirmed = await this._notificationService.confirm({
+      title: 'Delete Task',
+      text: 'This task will be permanently deleted.',
+      confirmButtonText: 'Delete',
+      cancelButtonText: 'Cancel',
+    });
+
+    if (!confirmed) {
+      return;
+    }
+    this._taskService.deleteTaskById(this.taskId() as string);
+
+    this._notificationService.success('Task Deleted Successfully');
+
+    this.navigateBack();
   }
 
   ngOnInit(): void {

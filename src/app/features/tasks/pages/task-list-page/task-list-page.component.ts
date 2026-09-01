@@ -20,6 +20,8 @@ export class TaskListPageComponent implements OnInit {
   }
 
   getTasks() {
+    if (this.tasks().length > 0) return;
+
     this._taskService.getTasks().subscribe({
       next: (res) => {
         console.log(res);
