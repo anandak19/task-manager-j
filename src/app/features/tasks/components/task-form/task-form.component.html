@@ -1,0 +1,53 @@
+<div class="task-form">
+  <form [formGroup]="taskForm" (ngSubmit)="submitForm()">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" id="title" formControlName="title" class="form-control" />
+      @if (getTitleError) {
+        <small class="form-group__error-text"> {{ getTitleError }} </small>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+
+      <quill-editor
+        class="editor"
+        [format]="'json'"
+        [modules]="modules"
+        formControlName="description"
+        placeholder="Write something..."
+      >
+      </quill-editor>
+      @if (getDescriptionError) {
+        <small class="form-group__error-text"> {{ getDescriptionError }} </small>
+      }
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="deadline">Deadline</label>
+        <input type="date" id="deadline" formControlName="deadline" class="form-control" />
+        @if (getDeadlineError) {
+          <small class="form-group__error-text"> {{ getDeadlineError }} </small>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="status">Status</label>
+        <select id="status" formControlName="status" class="form-control">
+          @for (status of taskStatuses; track status) {
+            <option [value]="status">
+              {{ taskStatusLabels[status] }}
+            </option>
+          }
+        </select>
+        @if (getStatusError) {
+          <small class="form-group__error-text"> {{ getStatusError }} </small>
+        }
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-sm">{{ isLoading ? 'Loading...' : formLabel }}</button>
+  </form>
+</div>

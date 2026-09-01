@@ -1,0 +1,86 @@
+@use 'index' as *;
+
+.task-form {
+  width: 100%;
+  max-width: 700px;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .editor{
+    flex: 1;
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #374151;
+  }
+
+  &__error-text {
+    color: $red-color;
+    font-size: $font-size-xs;
+  }
+}
+
+.form-row {
+  display: flex;
+  gap: 1.25rem;
+
+  .form-group {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.7rem 0.8rem;
+
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: #111827;
+
+  background-color: #fff;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  outline: none;
+  box-sizing: border-box;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  }
+
+  &::placeholder {
+    color: #9ca3af;
+  }
+}
+
+textarea.form-control {
+  min-height: 150px;
+  resize: vertical;
+}
+
+select.form-control {
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .form-row {
+    flex-direction: column;
+  }
+}
