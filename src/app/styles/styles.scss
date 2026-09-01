@@ -11,3 +11,34 @@ html,
 body {
   background-color: $background;
 }
+
+
+.btn {
+  align-self: flex-start;
+  padding: 0.7rem 1.5rem;
+
+  border: none;
+  border-radius: 6px;
+
+  font-size: 0.95rem;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.1s ease;
+
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #2563eb;
+
+  &:hover {
+    background-color: #1d4ed8;
+  }
+}

@@ -1,0 +1,8 @@
+<div class="create-task">
+  <header class="create-task__header">
+    <h2 class="create-task__title">Create Task</h2>
+  </header>
+  <section class="create-task__form">
+    <app-task-form (submitTaskForm)="handleCreateTask($event)" [isLoading]="isTaskCreating()"></app-task-form>
+  </section>
+</div>
