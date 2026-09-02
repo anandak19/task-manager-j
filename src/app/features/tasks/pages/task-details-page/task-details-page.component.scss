@@ -71,6 +71,17 @@
     background-color: #fff;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     border-radius: 10px;
+
+    &__comments-container {
+      margin-top: $spacing-2;
+    }
+
+    // &__form
+
+    &__emtpy {
+      color: $gray-color;
+      font-style: italic;
+    }
   }
 }
 

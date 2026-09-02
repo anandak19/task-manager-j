@@ -1,0 +1,18 @@
+<div class="comment">
+  <section class="comment__content">
+    <header>
+        <span>{{comment.username}}</span>
+    </header>
+    <main class="comment__text">
+        <p>{{comment.text}}</p>
+    </main>
+  </section>
+  <footer>
+    <button (click)="replayComment()">Reply</button>
+  </footer>
+  <div class="comment__replies">
+    @for (replay of replies(); track $index) {
+        <app-comment [comment]="replay"></app-comment>
+    }
+  </div>
+</div>

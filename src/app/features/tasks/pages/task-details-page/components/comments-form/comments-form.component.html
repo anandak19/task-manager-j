@@ -1,0 +1,37 @@
+<form
+  class="comment-form"
+  [formGroup]="commentForm"
+  (ngSubmit)="submitComment()"
+>
+  <div class="comment-form__field">
+    <textarea
+      id="comment"
+      formControlName="text"
+      rows="4"
+      placeholder="Write a comment..."
+    ></textarea>
+
+    @if (textError) {
+      <span class="comment-form__error">
+        {{ textError }}
+      </span>
+    }
+  </div>
+
+  <div class="comment-form__actions">
+    <button
+      type="button"
+      class="comment-form__button comment-form__button--cancel"
+      (click)="cancel()"
+    >
+      Cancel
+    </button>
+
+    <button
+      type="submit"
+      class="comment-form__button comment-form__button--submit"
+    >
+      Comment
+    </button>
+  </div>
+</form>

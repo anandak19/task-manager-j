@@ -1,0 +1,167 @@
+[
+  {
+    "id": "comment-001",
+    "taskId": "task-001",
+    "userId": "user-001",
+    "username": "Anand",
+    "text": "The JWT authentication flow is ready for implementation.",
+    "parentId": null
+  },
+  {
+    "id": "comment-002",
+    "taskId": "task-001",
+    "userId": "user-002",
+    "username": "Rahul",
+    "text": "Should we use access and refresh tokens?",
+    "parentId": "comment-001"
+  },
+  {
+    "id": "comment-003",
+    "taskId": "task-001",
+    "userId": "user-001",
+    "username": "Anand",
+    "text": "Yes, we should use a short-lived access token and a refresh token.",
+    "parentId": "comment-002"
+  },
+  {
+    "id": "comment-004",
+    "taskId": "task-001",
+    "userId": "user-003",
+    "username": "Sarah",
+    "text": "Don't forget to protect the task routes as well.",
+    "parentId": "comment-001"
+  },
+  {
+    "id": "comment-005",
+    "taskId": "task-001",
+    "userId": "user-004",
+    "username": "John",
+    "text": "The registration and login endpoints should also have proper validation.",
+    "parentId": null
+  },
+
+  {
+    "id": "comment-006",
+    "taskId": "task-002",
+    "userId": "user-002",
+    "username": "Rahul",
+    "text": "The dashboard should make the task counts easy to understand.",
+    "parentId": null
+  },
+  {
+    "id": "comment-007",
+    "taskId": "task-002",
+    "userId": "user-001",
+    "username": "Anand",
+    "text": "I think we should show the counts for each status separately.",
+    "parentId": "comment-006"
+  },
+  {
+    "id": "comment-008",
+    "taskId": "task-002",
+    "userId": "user-003",
+    "username": "Sarah",
+    "text": "Agreed. We can use cards for Pending, In Progress and Completed.",
+    "parentId": "comment-007"
+  },
+
+  {
+    "id": "comment-009",
+    "taskId": "task-003",
+    "userId": "user-001",
+    "username": "Anand",
+    "text": "The comments section should support nested replies.",
+    "parentId": null
+  },
+  {
+    "id": "comment-010",
+    "taskId": "task-003",
+    "userId": "user-004",
+    "username": "John",
+    "text": "Should replies have the same edit and delete options as comments?",
+    "parentId": "comment-009"
+  },
+  {
+    "id": "comment-011",
+    "taskId": "task-003",
+    "userId": "user-001",
+    "username": "Anand",
+    "text": "Yes, users should be able to manage their own replies too.",
+    "parentId": "comment-010"
+  },
+  {
+    "id": "comment-012",
+    "taskId": "task-003",
+    "userId": "user-002",
+    "username": "Rahul",
+    "text": "We should also show a clear indentation for nested replies.",
+    "parentId": "comment-009"
+  },
+  {
+    "id": "comment-013",
+    "taskId": "task-003",
+    "userId": "user-003",
+    "username": "Sarah",
+    "text": "A recursive comment component would work well for this.",
+    "parentId": "comment-012"
+  },
+
+  {
+    "id": "comment-014",
+    "taskId": "task-004",
+    "userId": "user-003",
+    "username": "Sarah",
+    "text": "The layout should be responsive on smaller screens.",
+    "parentId": null
+  },
+  {
+    "id": "comment-015",
+    "taskId": "task-004",
+    "userId": "user-001",
+    "username": "Anand",
+    "text": "I will make the sidebar collapse on mobile devices.",
+    "parentId": "comment-014"
+  },
+
+  {
+    "id": "comment-016",
+    "taskId": "task-005",
+    "userId": "user-004",
+    "username": "John",
+    "text": "We should add tests for both valid and invalid task data.",
+    "parentId": null
+  },
+  {
+    "id": "comment-017",
+    "taskId": "task-005",
+    "userId": "user-002",
+    "username": "Rahul",
+    "text": "I'll also add tests for the task status changes.",
+    "parentId": "comment-016"
+  },
+
+  {
+    "id": "comment-018",
+    "taskId": "task-006",
+    "userId": "user-001",
+    "username": "Anand",
+    "text": "The title and deadline validations are working correctly.",
+    "parentId": null
+  },
+  {
+    "id": "comment-019",
+    "taskId": "task-006",
+    "userId": "user-003",
+    "username": "Sarah",
+    "text": "We should also make sure whitespace-only titles are rejected.",
+    "parentId": "comment-018"
+  },
+  {
+    "id": "comment-020",
+    "taskId": "task-006",
+    "userId": "user-001",
+    "username": "Anand",
+    "text": "Good point. I'll add a custom whitespace validator.",
+    "parentId": "comment-019"
+  }
+]

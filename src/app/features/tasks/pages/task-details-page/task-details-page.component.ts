@@ -7,22 +7,37 @@ import { NotificationService } from '@core/services/notification-service/notific
 import { ITask } from '@features/tasks/models/task.model';
 import { TaskService } from '@features/tasks/services/task.service';
 import { QuillModule } from 'ngx-quill';
+import { CommentsService } from '@features/tasks/services/comments/comments.service';
+import { IComment } from '@features/tasks/models/comment.model';
+import { CommentComponent } from './components/comment/comment.component';
+import { CommentsFormComponent } from './components/comments-form/comments-form.component';
 
 @Component({
   selector: 'app-task-details-page',
-  imports: [StatusLabelPipe, DatePipe, QuillModule, FormsModule],
+  imports: [
+    StatusLabelPipe,
+    DatePipe,
+    QuillModule,
+    FormsModule,
+    CommentComponent,
+    CommentsFormComponent,
+  ],
   templateUrl: './task-details-page.component.html',
   styleUrl: './task-details-page.component.scss',
 })
 export class TaskDetailsPageComponent implements OnInit {
-  taskId = input<string>();
+  taskId = input.required<string>();
   taskData = signal<ITask>({} as ITask);
+
+  rootComments = signal<IComment[]>([]);
 
   private _taskService = inject(TaskService);
   private _location = inject(Location);
   private _router = inject(Router);
   private _activatedRoute = inject(ActivatedRoute);
   private _notificationService = inject(NotificationService);
+
+  private _commentsService = inject(CommentsService);
 
   navigateBack() {
     this._location.back();
@@ -50,9 +65,24 @@ export class TaskDetailsPageComponent implements OnInit {
     this.navigateBack();
   }
 
-  ngOnInit(): void {
-    console.log(this.taskId());
+  getComments() {
+    // fetch comments by taskId and parentId
+    const result = this._commentsService.getComments(this.taskId(), null).subscribe({
+      next: (res) => {
+        this.rootComments.set(res);
+      },
+      error: (err) => {
+        //todo: show error
+      },
+    });
+  }
 
+  handleCommentSubmit(text: string) {
+    const newComment = this._commentsService.addComment(this.taskData().id, null, text);
+    this.rootComments.update((curr) => [...curr, newComment]);
+  }
+
+  getTasks() {
     this._taskService.getTasks().subscribe({
       next: (tasks) => {
         this._taskService.setTasks(tasks);
@@ -63,5 +93,10 @@ export class TaskDetailsPageComponent implements OnInit {
         }
       },
     });
+  }
+
+  ngOnInit(): void {
+    this.getTasks();
+    this.getComments();
   }
 }
