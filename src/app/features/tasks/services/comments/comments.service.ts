@@ -22,4 +22,16 @@ export class CommentsService {
   fetchAllComments() {
     return this._http.get<IComment[]>('comments.json');
   }
+
+  addComment(taskId: string, parentCommentId: string | null, comment: string) {
+    const newComment: IComment = {
+      id: Date.now().toString(),
+      parentId: parentCommentId,
+      taskId: taskId,
+      text: comment,
+      username: 'Anandan',
+    };
+    console.log('New Comment Added ', newComment);
+    return newComment
+  }
 }

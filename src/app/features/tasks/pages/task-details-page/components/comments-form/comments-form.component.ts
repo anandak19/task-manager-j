@@ -1,5 +1,6 @@
 import { Component, output, signal } from '@angular/core';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
+import { noWhitespaceValidator } from '@shared/validators/form.validators';
 
 @Component({
   selector: 'app-comments-form',
@@ -14,7 +15,7 @@ export class CommentsFormComponent {
   readonly commentForm = new FormGroup({
     text: new FormControl('', {
       nonNullable: true,
-      validators: [Validators.required, Validators.maxLength(500)],
+      validators: [Validators.required, Validators.maxLength(500), noWhitespaceValidator],
     }),
   });
 
@@ -55,6 +56,10 @@ export class CommentsFormComponent {
 
     if (text.hasError('maxlength')) {
       return 'Comment cannot exceed 500 characters';
+    }
+
+    if(text.hasError('whitespace')) {
+      return 'Comments should not contains white space'
     }
 
     return '';

@@ -11,7 +11,7 @@ import { ListCommentsComponent } from './components/list-comments/list-comments.
 import { CommentsService } from '@features/tasks/services/comments/comments.service';
 import { IComment } from '@features/tasks/models/comment.model';
 import { CommentComponent } from './components/comment/comment.component';
-import { CommentsFormComponent } from "./components/comments-form/comments-form.component";
+import { CommentsFormComponent } from './components/comments-form/comments-form.component';
 
 @Component({
   selector: 'app-task-details-page',
@@ -21,8 +21,8 @@ import { CommentsFormComponent } from "./components/comments-form/comments-form.
     QuillModule,
     FormsModule,
     CommentComponent,
-    CommentsFormComponent
-],
+    CommentsFormComponent,
+  ],
   templateUrl: './task-details-page.component.html',
   styleUrl: './task-details-page.component.scss',
 })
@@ -76,6 +76,11 @@ export class TaskDetailsPageComponent implements OnInit {
         //todo: show error
       },
     });
+  }
+
+  handleCommentSubmit(text: string) {
+    const newComment = this._commentsService.addComment(this.taskData().id, null, text);
+    this.rootComments.update((curr) => [...curr, newComment]);
   }
 
   getTasks() {

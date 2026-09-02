@@ -2,6 +2,8 @@ import { Component, inject, Input, OnChanges, signal, SimpleChanges } from '@ang
 import { IComment } from '@features/tasks/models/comment.model';
 import { ListCommentsComponent } from '../list-comments/list-comments.component';
 import { CommentsService } from '@features/tasks/services/comments/comments.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ReplayModalComponent } from '../replay-modal/replay-modal.component';
 
 @Component({
   selector: 'app-comment',
@@ -14,6 +16,7 @@ export class CommentComponent implements OnChanges {
   replies = signal<IComment[]>([]);
 
   private _commentsService = inject(CommentsService);
+  private readonly dialog = inject(MatDialog);
 
   getComments() {
     this._commentsService.getComments(this.comment.taskId, this.comment.id).subscribe({
@@ -21,6 +24,25 @@ export class CommentComponent implements OnChanges {
         this.replies.set(res);
       },
       error: (err) => {},
+    });
+  }
+
+  replayComment() {
+    const dialogRef = this.dialog.open(ReplayModalComponent, {
+      width: '500px',
+
+      data: {
+        taskId: this.comment.taskId,
+        parentCommentId: this.comment.parentId,
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((newComment: IComment) => {
+      if (newComment) {
+        console.log('Returned data:', newComment);
+        const updatedReplies = [...this.replies(), newComment];
+        this.replies.set(updatedReplies);
+      }
     });
   }
 

@@ -39,13 +39,13 @@
 
       <main class="comments__comments-container">
         <section class="comments__form">
-            <app-comments-form></app-comments-form>
+          <app-comments-form (commentSubmitted)="handleCommentSubmit($event)"></app-comments-form>
         </section>
 
         <section class="comments__list-wrapper">
           @for (comment of rootComments(); track $index) {
             <app-comment [comment]="comment"></app-comment>
-          }@empty{
+          } @empty {
             <span class="comments__emtpy">No Comments</span>
           }
         </section>

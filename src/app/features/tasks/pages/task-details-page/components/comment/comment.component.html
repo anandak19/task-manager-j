@@ -8,7 +8,7 @@
     </main>
   </section>
   <footer>
-    <button>Reply</button>
+    <button (click)="replayComment()">Reply</button>
   </footer>
   <div class="comment__replies">
     @for (replay of replies(); track $index) {
