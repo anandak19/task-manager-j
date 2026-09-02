@@ -204,10 +204,4 @@ and
 package-lock.json
 ```
 
-## 📄 License
 
-This project is intended for learning and development purposes.
-
----
-
-**TaskManager** — A simple and modern Angular application for managing tasks and their comments.
