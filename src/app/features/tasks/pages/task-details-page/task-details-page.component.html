@@ -1,4 +1,4 @@
-@if (taskData()) {
+@if (taskData() && taskId()) {
   <div class="task-details-page">
     <div class="task-details">
       <header class="task-details__header">
@@ -37,9 +37,17 @@
         <h2>Comments</h2>
       </header>
 
-      <main>
-        <section>
-            
+      <main class="comments__comments-container">
+        <section class="comments__form">
+            <app-comments-form></app-comments-form>
+        </section>
+
+        <section class="comments__list-wrapper">
+          @for (comment of rootComments(); track $index) {
+            <app-comment [comment]="comment"></app-comment>
+          }@empty{
+            <span class="comments__emtpy">No Comments</span>
+          }
         </section>
       </main>
     </div>

@@ -1,0 +1,57 @@
+.comment {
+  padding: 1rem 0;
+  border-bottom: 1px solid #e5e7eb;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  header {
+    display: flex;
+    align-items: center;
+
+    span {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #1f2937;
+    }
+  }
+
+  &__text {
+    p {
+      margin: 0;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: #4b5563;
+      word-break: break-word;
+    }
+  }
+
+  footer {
+    margin-top: 0.6rem;
+
+    button {
+      padding: 0;
+      border: none;
+      background: transparent;
+      color: #2563eb;
+      font-family: inherit;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &__replies {
+    margin-top: 0.75rem;
+    margin-left: 1.5rem;
+    padding-left: 1rem;
+    border-left: 2px solid #e5e7eb;
+  }
+}
