@@ -1,6 +1,5 @@
 import { Component, inject, Input, OnChanges, signal, SimpleChanges } from '@angular/core';
 import { IComment } from '@features/tasks/models/comment.model';
-import { ListCommentsComponent } from '../list-comments/list-comments.component';
 import { CommentsService } from '@features/tasks/services/comments/comments.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ReplayModalComponent } from '../replay-modal/replay-modal.component';
@@ -39,9 +38,7 @@ export class CommentComponent implements OnChanges {
 
     dialogRef.afterClosed().subscribe((newComment: IComment) => {
       if (newComment) {
-        console.log('Returned data:', newComment);
-        const updatedReplies = [...this.replies(), newComment];
-        this.replies.set(updatedReplies);
+        this.replies.update((curr) => [...curr, newComment])
       }
     });
   }

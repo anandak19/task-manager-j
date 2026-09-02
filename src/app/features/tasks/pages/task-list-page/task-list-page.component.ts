@@ -24,7 +24,6 @@ export class TaskListPageComponent implements OnInit {
 
     this._taskService.getTasks().subscribe({
       next: (res) => {
-        console.log(res);
         this._taskService.setTasks(res);
       },
       error: (err) => {

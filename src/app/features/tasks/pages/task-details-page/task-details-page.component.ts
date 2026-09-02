@@ -7,7 +7,6 @@ import { NotificationService } from '@core/services/notification-service/notific
 import { ITask } from '@features/tasks/models/task.model';
 import { TaskService } from '@features/tasks/services/task.service';
 import { QuillModule } from 'ngx-quill';
-import { ListCommentsComponent } from './components/list-comments/list-comments.component';
 import { CommentsService } from '@features/tasks/services/comments/comments.service';
 import { IComment } from '@features/tasks/models/comment.model';
 import { CommentComponent } from './components/comment/comment.component';
