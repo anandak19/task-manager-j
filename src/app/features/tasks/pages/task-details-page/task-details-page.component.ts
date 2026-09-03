@@ -1,5 +1,5 @@
 import { DatePipe, Location } from '@angular/common';
-import { Component, inject, Input, input, OnInit, signal } from '@angular/core';
+import { Component, DestroyRef, inject, Input, input, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StatusLabelPipe } from '@core/pipes/status-label-pipe';
@@ -11,6 +11,7 @@ import { CommentsService } from '@features/tasks/services/comments/comments.serv
 import { IComment } from '@features/tasks/models/comment.model';
 import { CommentComponent } from './components/comment/comment.component';
 import { CommentsFormComponent } from './components/comments-form/comments-form.component';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-task-details-page',
@@ -36,6 +37,7 @@ export class TaskDetailsPageComponent implements OnInit {
   private _router = inject(Router);
   private _activatedRoute = inject(ActivatedRoute);
   private _notificationService = inject(NotificationService);
+  private _destroyRef = inject(DestroyRef);
 
   private _commentsService = inject(CommentsService);
 
@@ -58,11 +60,16 @@ export class TaskDetailsPageComponent implements OnInit {
     if (!confirmed) {
       return;
     }
-    this._taskService.deleteTaskById(this.taskId() as string);
 
-    this._notificationService.success('Task Deleted Successfully');
-
-    this.navigateBack();
+    this._taskService.deleteTaskById(this.taskId()).subscribe({
+      next: (res) => {
+        this._notificationService.success('Task Deleted Successfully');
+        this.navigateBack();
+      },
+      error: (err) => {
+        this._notificationService.error('Faild to delete task');
+      },
+    });
   }
 
   getComments() {
@@ -72,31 +79,41 @@ export class TaskDetailsPageComponent implements OnInit {
         this.rootComments.set(res);
       },
       error: (err) => {
-        //todo: show error
+        this._notificationService.error('Faild to get comments');
       },
     });
   }
 
   handleCommentSubmit(text: string) {
-    const newComment = this._commentsService.addComment(this.taskData().id, null, text);
-    this.rootComments.update((curr) => [...curr, newComment]);
+    this._commentsService
+      .addComment(this.taskData().id, null, text)
+      .pipe(takeUntilDestroyed(this._destroyRef))
+      .subscribe({
+        next: (res) => {
+          this.rootComments.update((curr) => [...curr, res]);
+        },
+        error: (err) => {
+          this._notificationService.error('Faild to add comment');
+        },
+      });
   }
 
-  getTasks() {
-    this._taskService.getTasks().subscribe({
-      next: (tasks) => {
-        this._taskService.setTasks(tasks);
-        const task = this._taskService.findTaskById(this.taskId() as string);
-
-        if (task) {
-          this.taskData.set(task);
-        }
-      },
-    });
+  getTaskDetails() {
+    this._taskService
+      .findTaskById(this.taskId())
+      .pipe(takeUntilDestroyed(this._destroyRef))
+      .subscribe({
+        next: (res) => {
+          this.taskData.set(res);
+        },
+        error: (err) => {
+          this._notificationService.error('Faild to get task details');
+        },
+      });
   }
 
   ngOnInit(): void {
-    this.getTasks();
+    this.getTaskDetails();
     this.getComments();
   }
 }

@@ -46,9 +46,9 @@ A task management application built with **Angular 21** that allows users to cre
 
 Make sure you have the following installed:
 
-* **Node.js**
-* **npm**
-* **Angular CLI**
+* Node.js
+* npm
+* Angular CLI
 
 You can verify your installations with:
 
@@ -78,21 +78,38 @@ Install the project dependencies using npm:
 npm install
 ```
 
-### 3. Start the Development Server
+### 3. Start the JSON Server
 
-Run the Angular development server:
+Run the JSON Server mock API:
 
 ```bash
-ng serve
+npm run server
 ```
 
-Once the server is running, open your browser and navigate to:
+Once the JSON Server is running, the API endpoints will be available at:
+```
+http://localhost:3000
+```
+
+### 4. Start the Application in Development Mode
+
+Run the Angular application:
+
+```bash
+npm run start
+```
+
+Once the development server is running, open your browser and navigate to:
 
 ```text
 http://localhost:4200/
 ```
+Now you can interact with the application and test its features. The application will automatically reload whenever you modify the source files.
 
-The application will automatically reload whenever you modify the source files.
+To change the current user data navigate to:
+```
+src/app/core/services/auth/auth.service.ts
+```
 
 ## Building the Application
 
@@ -131,25 +148,27 @@ Task List
             └── Update Task
 ```
 
+
 ### Creating a Task
 
 1. Navigate to the task listing page.
-2. Click **Create Task**.
+2. Click Create Task.
 3. Enter the required task information.
 4. Submit the form.
 5. The newly created task will appear in the task list.
 
 ### Viewing a Task
 
-1. Select a task from the task list.
-2. Open the task details page.
-3. View the complete task information.
-4. View existing comments associated with the task.
+1. Navigate to the tasks page.
+2. Select a task from the task list.
+3. Click the View Task button on the task card.
+4. View the complete task information.
+5. View existing comments associated with the task.
 
 ### Editing a Task
 
 1. Open the task you want to modify.
-2. Select **Edit**.
+2. Select Edit.
 3. Update the required information.
 4. Save the changes.
 
@@ -161,47 +180,22 @@ Task List
 4. Submit the comment.
 5. The comment will be displayed under the task.
 
-## Angular CLI
+### Replying to Comments
 
-This project was generated using **Angular CLI 21.2.19**.
+1. Open a task's details page.
+2. Locate the comment you want to reply to.
+3. Click the Reply button on the comment.
+4. Write your response in the modal that appears.
+5. Click Comment to submit your reply.
 
-Useful Angular CLI commands:
 
-```bash
-# Start development server
-ng serve
 
-# Build the application
-ng build
+### External Dependencies Used
 
-# Run unit tests
-ng test
-
-# Generate a component
-ng generate component component-name
-
-# Display Angular CLI help
-ng help
-```
-
-## Dependencies
-
-Install all required dependencies with:
-
-```bash
-npm install
-```
-
-The exact versions of the project's dependencies are defined in:
-
-```text
-package.json
-```
-
-and
-
-```text
-package-lock.json
-```
+* **angular-material** - Material Design components for Angular. Used for replay comment modal
+* **json-server** - Mock REST API server for development
+* **ngx-quill** - Rich text editor component for Angular
+* **quill** - Core rich text editor library
+* **sweetalert** - Beautiful alert dialogs. Used for showing confirmations and notifications
 
 

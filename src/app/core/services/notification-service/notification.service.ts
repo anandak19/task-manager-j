@@ -31,4 +31,13 @@ export class NotificationService {
       timer: 1500,
     });
   }
+
+  error(text: string = 'Error') {
+    Swal.fire({
+      icon: 'error',
+      title: text,
+      showConfirmButton: false,
+      timer: 1500,
+    });
+  }
 }
