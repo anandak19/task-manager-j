@@ -10,47 +10,32 @@ export class TaskService {
   private _tasks = signal<ITask[]>([]);
   readonly tasks = this._tasks.asReadonly();
 
+  private endPoint = 'tasks';
+
   private _http = inject(HttpClient);
   private _notification = inject(NotificationService);
 
   createTask(taskData: ICreateTask) {
-    const newTask: ITask = {
-      ...taskData,
-      id: Date.now().toString(),
-    };
-    this._tasks.update((curr) => [...curr, newTask]);
-    this._notification.success('Added new task');
+    return this._http.post(this.endPoint, taskData);
   }
 
   getTasks() {
-    return this._http.get<ITask[]>('tasks.json');
+    return this._http.get<ITask[]>(this.endPoint);
   }
 
-  findTaskById(taskId: string): ITask | null {
-    return this.tasks().find((task) => task.id === taskId) ?? null;
+  findTaskById(taskId: string) {
+    return this._http.get<ITask>(`${this.endPoint}/${taskId}`);
   }
 
   updateTaskById(taskData: ITaskFormData, taskId: string) {
-    const updatedTasks = this.tasks().map((curr) => {
-      if (curr.id === taskId) {
-        return {
-          ...curr,
-          ...taskData,
-        };
-      }
-
-      return curr;
-    });
-
-    this.setTasks(updatedTasks);
+    return this._http.patch<ITask>(`${this.endPoint}/${taskId}`, taskData);
   }
 
   deleteTaskById(taskId: string) {
-    const updatedTasks = this.tasks().filter((curr) => curr.id !== taskId);
-    this.setTasks(updatedTasks);
+    return this._http.delete(`${this.endPoint}/${taskId}`);
   }
 
-  setTasks(tasks: ITask[]): void {
+  setTasks(tasks: ITask[]) {
     this._tasks.set(tasks);
   }
 }

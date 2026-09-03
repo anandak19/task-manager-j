@@ -17,7 +17,7 @@ export class CommentComponent implements OnChanges {
   private _commentsService = inject(CommentsService);
   private readonly dialog = inject(MatDialog);
 
-  getComments() {
+  getReplies() {
     this._commentsService.getComments(this.comment.taskId, this.comment.id).subscribe({
       next: (res) => {
         this.replies.set(res);
@@ -32,18 +32,18 @@ export class CommentComponent implements OnChanges {
 
       data: {
         taskId: this.comment.taskId,
-        parentCommentId: this.comment.parentId,
+        parentId: this.comment.id,
       },
     });
 
     dialogRef.afterClosed().subscribe((newComment: IComment) => {
       if (newComment) {
-        this.replies.update((curr) => [...curr, newComment])
+        this.replies.update((curr) => [...curr, newComment]);
       }
     });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.getComments();
+    this.getReplies();
   }
 }
